@@ -3,14 +3,11 @@
     define('THEATER_NAME', 'OTC Cinema');
 
     if ($_GET){
-        $customername = $_GET['customername'];
+        $customer = $_GET['customer'];
         $tickets = (int) $_GET['numberoftickets'];
-        $coupon = $_GET['coupon'];
-        $snack = $_GET['snack'];
+        $coupon = isset($_GET['coupon']);
+        $snack = $_GET['snack'] ?? [];
     }
-    $subtotal;
-    $finaltotal;
-    
     
 ?>
 <!DOCTYPE html>
@@ -23,19 +20,19 @@
 <body>
     <div>
         <form method="get">
-                <label for="customername">Your Name:</label>
-                <input type="text" name="customer" id="customername">
+                <label for="customer">Your Name:</label>
+                <input type="text" name="customer" id="customer">
                 <label for="tickets">How Many tickets do you want?</label>
                 <input type="text" name="numberoftickets" id="tickets">
                 <p>Do you have a coupon?</p>
-                <input type="checkbox" name="coupon" id="yes">
+                <input type="checkbox" name="coupon" value="on">
                 <label for="yes">Yes</label>
                 <p>Do you want a snack</p>
-                <input type="checkbox" name="snack" id="popcorn">
+                <input type="checkbox" name="snack[]" value="Popcorn">
                 <label for="Popcorn">Popcorn</label>
-                <input type="checkbox" name="snack" id="gummies">
+                <input type="checkbox" name="snack[]" value="Gummies">
                 <label for="gummies">Gummies</label>
-                <input type="checkbox" name="snack" id="mnms">
+                <input type="checkbox" name="snack[]" value="M&Ms">
                 <label for="mnms">M&MS</label>
                 
                 
@@ -46,19 +43,17 @@
 <!--logic-->
     <div>
         
-        <?php 
+        <!-- <?php 
             if(isset($_GET['coupon'])){
                 echo "Coupon selected";
             }else{
                 echo "No coupon selected";
             }
-            if(isset($_GET['snack'])){
-                echo "snack selected";
-            }else{
-                echo $snack;
-            }
            
-            if(isset($_GET['tickets'])){
+        ?> -->
+        <!--Allows opening of if block innorder to display HTML only when these conditions are met-->
+        <?php if ($_GET): 
+             if(isset($_GET['numberoftickets'])){
                 #calculation
                 $subtotal = $tickets*TICKET_PRICE;
                 if($coupon){
@@ -68,11 +63,42 @@
                 }
 
 
-            }
-            if(isset($finaltotal)){
-                
-            }
-        ?>
+            } ?>
+            
+            <table>
+                <tr>
+                    <th>Name: <th>
+                    <td> <?php echo $customer ?></td>
+                </tr>
+                <tr>
+                    <th>Snack(s): </th>
+                    <td> <?php 
+                    if (!empty($_GET['snack'])){
+                        $snacks = $_GET["snack"];
+                        echo implode(",", $snacks);
+                    }else{
+                        echo "No Snack Selected";
+                    }
+                    ?></td>
+                </tr>
+                <tr>
+                    <th>Subtotal: <th>
+                    <td><?php echo $subtotal?></td>
+                </tr>
+                <tr>
+                    <th>Discount: <th>
+                    <td><?php echo $coupon ? "-2.00" : "0.00"; ?></td>
+                </tr>
+                <tr>
+                    <th>Total: </th>
+                    <td><?php echo number_format($finaltotal, 2)?></td>
+                <!--number_format allows to determine the number of decimal places printed-->
+                </tr>
+            </table>    
+
+        <?php endif; ?>
+        
+        
     </div>
     
 </body>
