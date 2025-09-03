@@ -33,19 +33,25 @@
                     <label for="tickets">How Many tickets do you want?</label>
                     <input type="number" name="numberoftickets" id="tickets">
                 </div>
+                <div class="col-md-4 mb-3">
+                    <p>Do you have a coupon?</p>
+                    <input type="checkbox" name="coupon" value="on">
+                    <label for="yes">Yes</label>
+                </div>
+                <div class="col-md-4 mb-3">
+                     <p>Do you want a snack</p>
+                    <input type="checkbox" name="snack[]" value="Popcorn">
+                    <label for="Popcorn">Popcorn</label>
+                    <input type="checkbox" name="snack[]" value="Gummies">
+                    <label for="gummies">Gummies</label>
+                    <input type="checkbox" name="snack[]" value="M&Ms">
+                    <label for="mnms">M&MS</label>
+                </div>
                     
             </div>
                 
-                <p>Do you have a coupon?</p>
-                <input type="checkbox" name="coupon" value="on">
-                <label for="yes">Yes</label>
-                <p>Do you want a snack</p>
-                <input type="checkbox" name="snack[]" value="Popcorn">
-                <label for="Popcorn">Popcorn</label>
-                <input type="checkbox" name="snack[]" value="Gummies">
-                <label for="gummies">Gummies</label>
-                <input type="checkbox" name="snack[]" value="M&Ms">
-                <label for="mnms">M&MS</label>
+                
+               
                 
                 <input type="submit" value="Submit">
             </form>
