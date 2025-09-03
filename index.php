@@ -16,14 +16,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ticket Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
-<body>
+<body class="p-3 mb-2 bg-dark text-white">
+     <div class = "d-flex d-flex justify-content-center shadow p-3 mb-5 rounded bg-white text-dark">
+        <h1><?php echo THEATER_NAME?></h1>
+    </div>
     <div>
-        <form method="get">
-                <label for="customer">Your Name:</label>
-                <input type="text" name="customer" id="customer">
-                <label for="tickets">How Many tickets do you want?</label>
-                <input type="text" name="numberoftickets" id="tickets">
+        <form method="get" class = "p-3">
+            <div class= "form-row">
+                <div class="col-md-4 mb-3">
+                    <label for="customer">Your Name:</label>
+                    <input type="text" name="customer" id="customer">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="tickets">How Many tickets do you want?</label>
+                    <input type="number" name="numberoftickets" id="tickets">
+                </div>
+                    
+            </div>
+                
                 <p>Do you have a coupon?</p>
                 <input type="checkbox" name="coupon" value="on">
                 <label for="yes">Yes</label>
@@ -34,8 +46,6 @@
                 <label for="gummies">Gummies</label>
                 <input type="checkbox" name="snack[]" value="M&Ms">
                 <label for="mnms">M&MS</label>
-                
-                
                 
                 <input type="submit" value="Submit">
             </form>
@@ -65,7 +75,7 @@
 
             } ?>
             
-            <table>
+            <table class= "d-flex d-flex justify-content-center shadow p-3 mb-5 bg-white text-dark">
                 <tr>
                     <th>Name: <th>
                     <td> <?php echo $customer ?></td>
@@ -83,15 +93,15 @@
                 </tr>
                 <tr>
                     <th>Subtotal: <th>
-                    <td><?php echo $subtotal?></td>
+                    <td>$<?php echo $subtotal?></td>
                 </tr>
                 <tr>
                     <th>Discount: <th>
-                    <td><?php echo $coupon ? "-2.00" : "0.00"; ?></td>
+                    <td>-$<?php echo $coupon ? "2.00" : "0.00"; ?></td>
                 </tr>
                 <tr>
                     <th>Total: </th>
-                    <td><?php echo number_format($finaltotal, 2)?></td>
+                    <td>$<?php echo number_format($finaltotal, 2)?></td>
                 <!--number_format allows to determine the number of decimal places printed-->
                 </tr>
             </table>    
